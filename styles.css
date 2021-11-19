@@ -1,0 +1,15 @@
+.product {
+    background-color: cadetblue;
+    border-radius: 10px;
+    margin: 20px;
+    text-align: center;
+}
+
+.product .image {
+    width: 100%;
+    max-width: 100px;
+}
+
+.product .name {
+    font-weight: bold;
+}
