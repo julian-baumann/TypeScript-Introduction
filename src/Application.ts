@@ -6,16 +6,16 @@ class Application
 
     public constructor()
     {
-        this.writeDataFromServerToHTML();
+        this.getDataAndWriteHTML();
 
-        setInterval(this.writeDataFromServerToHTML.bind(this), 10000);
+        setInterval(this.getDataAndWriteHTML.bind(this), 10000);
     }
 
-    private async writeDataFromServerToHTML(): Promise<void>
+    private async getDataAndWriteHTML(): Promise<void>
     {
         this.data = await this.getDataFromServer();
 
-        this.assignToHtml();
+        this.writeToHtml();
     }
 
     private async getDataFromServer(): Promise<ProductsData>
@@ -24,7 +24,7 @@ class Application
         return (await response.json()) as ProductsData;
     }
 
-    public assignToHtml(): void
+    public writeToHtml(): void
     {
         const productsContainerElement: HTMLElement|null = document.getElementById("productsContainer");
 
@@ -43,7 +43,7 @@ class Application
             productImageElement.classList.add("image");
 
 
-            //                                              <p></p>
+            //                                                   <p></p> 
             const nameParagraphElement: HTMLElement = document.createElement("p");
             nameParagraphElement.innerHTML = product.name; // <p>product name</p>
             nameParagraphElement.classList.add("name");
@@ -52,14 +52,13 @@ class Application
             const priceParagraphElement: HTMLElement = document.createElement("p");
             priceParagraphElement.innerHTML = `${product.price.toString()} €`;
             priceParagraphElement.classList.add("price");
-
+            
 
             productsDiv.appendChild(nameParagraphElement);
             productsDiv.appendChild(productImageElement);
             productsDiv.appendChild(priceParagraphElement);
 
 
-    
             productsContainerElement.appendChild(productsDiv);
         }
     }

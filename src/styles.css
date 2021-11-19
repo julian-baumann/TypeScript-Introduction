@@ -1,4 +1,5 @@
 .product {
+    max-width: 300px;
     background-color: cadetblue;
     border-radius: 10px;
     margin: 20px;
