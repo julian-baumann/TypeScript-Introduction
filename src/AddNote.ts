@@ -32,7 +32,7 @@ class AddNote
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(newNote)
-        })
+        });
 
         if (response.status == 201)
         {
