@@ -1,4 +1,5 @@
 import { Note } from "./Entities/Note.js";
+import { HTMLRenderer } from "./HTMLRenderer.js";
 
 class Application
 {
@@ -8,7 +9,7 @@ class Application
     {
         this.getDataAndWriteHTML();
 
-        // setInterval(this.getDataAndWriteHTML.bind(this), 10000);
+        setInterval(this.getDataAndWriteHTML.bind(this), 10000);
     }
 
     private async getDataAndWriteHTML(): Promise<void>
@@ -35,17 +36,15 @@ class Application
 
         for (const note of this.data)
         {
-            const productsDiv: HTMLElement = document.createElement("div");
-            productsDiv.classList.add("note");
+            const id: string = "note-" + note.id;
 
-            const nameParagraphElement: HTMLElement = document.createElement("p");
-            nameParagraphElement.innerHTML = note.text;
-            nameParagraphElement.classList.add("text");
+            const noteElement: HTMLDivElement = HTMLRenderer.getOrCreateElement("#" + id, "div", productsContainerElement);
+            noteElement.classList.add("note");
+            noteElement.id = id;
 
-            productsDiv.appendChild(nameParagraphElement);
-
-
-            productsContainerElement.appendChild(productsDiv);
+            const noteTextElement: HTMLDivElement = HTMLRenderer.getOrCreateElement("#" + id + " .text", "p", noteElement);
+            noteTextElement.classList.add("text");
+            noteTextElement.innerHTML = note.text;
         }
     }
 }
