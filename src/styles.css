@@ -10,7 +10,7 @@ body {
     flex-wrap: wrap;
 }
 
-.product {
+.note {
     width: 100%;
     max-width: 300px;
     background-color: #E0E0E0;
@@ -22,20 +22,6 @@ body {
     flex-direction: column;
 }
 
-.product .image {
-    width: 100%;
-    border-radius: 10px;
-    flex: 1;
-    background-color: #bdbdbd;
-    object-fit: contain;
-}
-
-.product .name {
-    font-weight: bold;
-    font-size: 2em;
-}
-
-.product .price {
-    font-weight: bold;
-    font-size: 1.5em;
+.note .text {
+    /* text-align: left; */
 }

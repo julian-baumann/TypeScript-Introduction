@@ -1,14 +1,14 @@
-import { ProductsData } from "./Entities/ProductsData.js"
+import { Note } from "./Entities/Note.js";
 
 class Application
 {
-    private data: ProductsData = new ProductsData();
+    private data: Array<Note> = [];
 
     public constructor()
     {
         this.getDataAndWriteHTML();
 
-        setInterval(this.getDataAndWriteHTML.bind(this), 10000);
+        // setInterval(this.getDataAndWriteHTML.bind(this), 10000);
     }
 
     private async getDataAndWriteHTML(): Promise<void>
@@ -18,10 +18,10 @@ class Application
         this.writeToHtml();
     }
 
-    private async getDataFromServer(): Promise<ProductsData>
+    private async getDataFromServer(): Promise<Array<Note>>
     {
-        const response: Response = await fetch("http://pi.julba.de:5240/api/v1/products");
-        return (await response.json()) as ProductsData;
+        const response: Response = await fetch("http://0.0.0.0:4000/v2/notes");
+        return (await response.json()) as Array<Note>;
     }
 
     public writeToHtml(): void
@@ -33,30 +33,16 @@ class Application
             return;
         }
 
-        for (const product of this.data.products)
+        for (const note of this.data)
         {
             const productsDiv: HTMLElement = document.createElement("div");
-            productsDiv.classList.add("product");
+            productsDiv.classList.add("note");
 
-            const productImageElement: HTMLImageElement = document.createElement("img");
-            productImageElement.src = product.imageSource;
-            productImageElement.classList.add("image");
-
-
-            //                                                   <p></p> 
             const nameParagraphElement: HTMLElement = document.createElement("p");
-            nameParagraphElement.innerHTML = product.name; // <p>product name</p>
-            nameParagraphElement.classList.add("name");
-
-
-            const priceParagraphElement: HTMLElement = document.createElement("p");
-            priceParagraphElement.innerHTML = `${product.price.toString()} €`;
-            priceParagraphElement.classList.add("price");
-            
+            nameParagraphElement.innerHTML = note.text;
+            nameParagraphElement.classList.add("text");
 
             productsDiv.appendChild(nameParagraphElement);
-            productsDiv.appendChild(productImageElement);
-            productsDiv.appendChild(priceParagraphElement);
 
 
             productsContainerElement.appendChild(productsDiv);
