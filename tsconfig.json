@@ -3,7 +3,7 @@
         "target": "es2015",
         "module": "es2015",
         "sourceMap": true,
-        "outDir": "./dist/",
+        "outDir": "./src/dist/",
         "strict": true,
         "moduleResolution": "node"
     }
