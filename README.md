@@ -2,6 +2,8 @@
 
 > Please note: Thanks to CORS, this project will only run in a server environment.
 
+The presentation can be found here: https://julba.de/school/AsyncTypeScript
+
 ## Run project
 
 ### UNIX (mac/linux)
